@@ -795,6 +795,7 @@ static VALUE _SelectDataSelect (void *v)
 	return Qnil;
 }
 #endif
+#endif
 
 /*********************
 SelectData_t::_Select
@@ -802,16 +803,13 @@ SelectData_t::_Select
 
 int SelectData_t::_Select()
 {
-	#ifdef HAVE_TBR
+	#if defined(HAVE_TBR) && defined(BUILD_FOR_RUBY)
 	rb_thread_blocking_region (_SelectDataSelect, (void*)this, RUBY_UBF_IO, 0);
 	return nSockets;
-	#endif
-
-	#ifndef HAVE_TBR
+	#else
 	return EmSelect (maxsocket+1, &fdreads, &fdwrites, &fderrors, &tv);
 	#endif
 }
-#endif
 
 
 
@@ -1857,7 +1855,7 @@ const unsigned long EventMachine_t::_OpenFileForWriting (const char *filename)
 		return 0;
 
   int fd = open (filename, O_CREAT|O_TRUNC|O_WRONLY|O_NONBLOCK, 0644);
-  
+
 	FileStreamDescriptor *fsd = new FileStreamDescriptor (fd, this);
   if (!fsd)
   	throw std::runtime_error ("no file-stream allocated");
