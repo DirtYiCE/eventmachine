@@ -17,11 +17,9 @@ See the file COPYING for complete licensing information.
 
 *****************************************************************************/
 
-
-#ifdef WITH_SSL
-
 #include "project.h"
 
+#ifdef WITH_SSL
 
 bool SslContext_t::bLibraryInitialized = false;
 

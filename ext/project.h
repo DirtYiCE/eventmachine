@@ -21,6 +21,9 @@ See the file COPYING for complete licensing information.
 #ifndef __Project__H_
 #define __Project__H_
 
+#ifndef BUILD_FOR_RUBY
+#include "eventmachine_config.h"
+#endif
 
 #ifdef OS_WIN32
 #pragma warning(disable:4786)
@@ -97,6 +100,8 @@ typedef int pid_t;
 #endif
 
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 using namespace std;
 

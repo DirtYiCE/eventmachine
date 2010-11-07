@@ -14,3 +14,9 @@ Makefile
 *.dSYM
 java/src/.project
 *.rbc
+
+*~
+\#*#
+.waf-*
+build
+.lock-wafbuild

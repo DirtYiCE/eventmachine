@@ -17,10 +17,9 @@ See the file COPYING for complete licensing information.
 
 *****************************************************************************/
 
+#include "project.h"
 
 #ifdef HAVE_EPOLL
-
-#include "project.h"
 
 #endif // HAVE_EPOLL
 
